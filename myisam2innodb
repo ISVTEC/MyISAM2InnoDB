@@ -34,6 +34,9 @@ while (<>) {
     $db = $1 if /^USE (.*);$/;
     $db = $1 if /^-- Host: .+?    Database: (.+)$/;
 
+    # Skip 'mysql' database
+    next if $db eq '`mysql`';
+
     if (/^CREATE TABLE `(.*)` \(/) {
 	$table = $1;
     }
